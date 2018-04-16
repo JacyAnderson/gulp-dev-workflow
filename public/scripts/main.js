@@ -8,7 +8,7 @@ class Person {
         } else {
             return 'Hello!';
         }
-    }
+    } 
 }
 
 let person = new Person('Jacy');

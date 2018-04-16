@@ -1,13 +1,13 @@
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const livereload = require('gulp-livereload');
-const concat = require('gulp-concat');
-const minifyCss = require('gulp-minify-css');
-const autoprefixer = require('gulp-autoprefixer');
-const plumber = require('gulp-plumber');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
+import gulp from 'gulp';
+import babel from 'gulp-babel';
+import uglify from 'gulp-uglify';
+import livereload from 'gulp-livereload';
+import concat from 'gulp-concat';
+import minifyCss from 'gulp-minify-css';
+import autoprefixer from 'gulp-autoprefixer';
+import plumber from 'gulp-plumber';
+import sourcemaps from 'gulp-sourcemaps';
+import sass from 'gulp-sass';
 
 // File paths
 const DIST_PATH = 'public/dist';
