@@ -1,0 +1,1 @@
+"use strict";var hello="Hello world",name="Jacy";document.write("<p>"+hello+", my name is "+name+".</p>");

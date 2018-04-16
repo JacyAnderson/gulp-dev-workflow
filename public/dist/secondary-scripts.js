@@ -1,0 +1,1 @@
+"use strict";var hello="hello world";document.write(hello);
