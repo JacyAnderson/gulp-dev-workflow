@@ -20,16 +20,18 @@ import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 
 // File paths
 const DIST_PATH = 'public/dist';
-const SCRIPTS_PATH = 'public/scripts/**/*.js'
-const SCSS_PATH = 'public/scss/**/*.scss';
-const IMAGES_PATH = 'public/images/**/*.{png,jpeg,jpg,svg,gif}';
+const SRC_PATH = 'public/src'
+const SCRIPTS_PATH = `${SRC_PATH}/scripts/**/*.js`
+const SCSS_PATH = `${SRC_PATH}/scss/**/*.scss`;
+const SERVER_PATH = './server.js';
+const IMAGES_PATH = `${SRC_PATH}/images/**/*.{png,jpeg,jpg,svg,gif}`;
 
 // Helpers
 const siteName = 'archive';
 
 // Styles For SCSS
 gulp.task('styles', () => {
-    return gulp.src(['public/scss/styles.scss'])
+    return gulp.src([`${SRC_PATH}/scss/styles.scss`])
         .pipe(plumber(function (err) {
             console.log('Style Task Error');
             console.log(err);
@@ -98,7 +100,7 @@ gulp.task('export', () => {
 });
 
 gulp.task('watch', ['default'], () => {
-    require('./server.js');
+    require(SERVER_PATH);
     livereload.listen();
     gulp.watch(SCRIPTS_PATH, ['scripts']);
     gulp.watch(SCSS_PATH, ['styles']);    
