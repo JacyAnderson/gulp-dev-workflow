@@ -8,6 +8,7 @@ import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import sass from 'gulp-sass';
+import del from 'del';
 
 // Image Compression
 import imagemin from 'gulp-imagemin';
@@ -73,7 +74,14 @@ gulp.task('images', () => {
         .pipe(gulp.dest(`${DIST_PATH}/images`));
 });
 
-gulp.task('default', ['images', 'styles', 'scripts'], () => {
+gulp.task('clean', () => {
+    return del.sync([
+        // Removes dist folder everytime it is run, starting from a clean slate.
+        DIST_PATH
+    ]);
+});
+
+gulp.task('default', ['clean', 'images', 'styles', 'scripts'], () => {
 });
 
 gulp.task('watch', ['default'], () => {
