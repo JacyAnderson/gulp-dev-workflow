@@ -23,8 +23,8 @@ const DIST_PATH = 'public/dist';
 const SRC_PATH = 'public/src'
 const SCRIPTS_PATH = `${SRC_PATH}/scripts/**/*.js`
 const SCSS_PATH = `${SRC_PATH}/scss/**/*.scss`;
-const SERVER_PATH = './server.js';
 const IMAGES_PATH = `${SRC_PATH}/images/**/*.{png,jpeg,jpg,svg,gif}`;
+const SERVER_PATH = './server.js';
 
 // Helpers
 const siteName = 'archive';
@@ -82,8 +82,8 @@ gulp.task('images', () => {
         .pipe(gulp.dest(`${DIST_PATH}/images`));
 });
 
-// Removes dist folder everytime it is run, starting from a clean slate.
 gulp.task('clean', () => {
+    // Removes dist folder everytime it is run, starting from a clean slate.    
     return del.sync([
         DIST_PATH
     ]);

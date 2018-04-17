@@ -4,14 +4,14 @@ class Person {
     }
     hello() {
         if (typeof this.name === 'string') {
-            return `${hello}, I am your new friendly neighborhood dev ${person.name}!`;
+            return `${hello}, I am your new friendly neighborhood dev, ${person.name}!`;
         } else {
             return 'Hello!';
         }
     } 
 }
 
-let person = new Person('Jacy');
+let person = new Person('DeveloperBot');
 let hello = 'Hello world';
 
 
