@@ -9,14 +9,19 @@ import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import sass from 'gulp-sass';
 
+// Image Compression
+import imagemin from 'gulp-imagemin';
+import imageminPngquant from 'imagemin-pngquant';
+import imageminJpegRecompress from 'imagemin-jpeg-recompress';
+
 // File paths
 const DIST_PATH = 'public/dist';
 const SCRIPTS_PATH = 'public/scripts/**/*.js'
 const SCSS_PATH = 'public/scss/**/*.scss';
+const IMAGES_PATH = 'public/images/**/*.{png,jpeg,jpg,svg,gif}';
 
 // Styles For SCSS
 gulp.task('styles', () => {
-    console.log('Starting styles task');
     return gulp.src(['public/scss/styles.scss'])
         .pipe(plumber(function (err) {
             console.log('Style Task Error');
@@ -38,13 +43,12 @@ gulp.task('styles', () => {
 
 // Scripts
 gulp.task('scripts', () => {
-    console.log('Starting scripts task');
     return gulp.src(SCRIPTS_PATH)
         .pipe(plumber(function(err) {
             console.log('Scripts Task Error');
             console.log(err);
             this.emit('end');
-        }))
+        })) 
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(uglify())
@@ -55,15 +59,24 @@ gulp.task('scripts', () => {
 });
 // Images
 gulp.task('images', () => {
-    console.log('Starting images task');
+    return gulp.src(IMAGES_PATH)
+        .pipe(imagemin(
+            [
+                imagemin.gifsicle(),
+                imagemin.jpegtran(),
+                imagemin.optipng(),
+                imagemin.svgo(),
+                imageminPngquant(),
+                imageminJpegRecompress()
+            ]
+        ))
+        .pipe(gulp.dest(`${DIST_PATH}/images`));
 });
 
-gulp.task('default', () => {
-    console.log('Starting default task');
+gulp.task('default', ['images', 'styles', 'scripts'], () => {
 });
 
-gulp.task('watch', () => {
-    console.log('Starting watch task'); 
+gulp.task('watch', ['default'], () => {
     require('./server.js');
     livereload.listen();
     gulp.watch(SCRIPTS_PATH, ['scripts']);
