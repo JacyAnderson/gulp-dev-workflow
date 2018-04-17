@@ -1,3 +1,5 @@
+'use strict'
+
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 import uglify from 'gulp-uglify';
@@ -9,6 +11,7 @@ import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import sass from 'gulp-sass';
 import del from 'del';
+import zip from 'gulp-zip';
 
 // Image Compression
 import imagemin from 'gulp-imagemin';
@@ -20,6 +23,9 @@ const DIST_PATH = 'public/dist';
 const SCRIPTS_PATH = 'public/scripts/**/*.js'
 const SCSS_PATH = 'public/scss/**/*.scss';
 const IMAGES_PATH = 'public/images/**/*.{png,jpeg,jpg,svg,gif}';
+
+// Helpers
+const siteName = 'archive';
 
 // Styles For SCSS
 gulp.task('styles', () => {
@@ -74,14 +80,21 @@ gulp.task('images', () => {
         .pipe(gulp.dest(`${DIST_PATH}/images`));
 });
 
+// Removes dist folder everytime it is run, starting from a clean slate.
 gulp.task('clean', () => {
     return del.sync([
-        // Removes dist folder everytime it is run, starting from a clean slate.
         DIST_PATH
     ]);
 });
 
 gulp.task('default', ['clean', 'images', 'styles', 'scripts'], () => {
+
+});
+
+gulp.task('export', () => {
+    return gulp.src('public/**/*')
+        .pipe(zip(`${siteName}.zip`))
+        .pipe(gulp.dest('./'))
 });
 
 gulp.task('watch', ['default'], () => {
