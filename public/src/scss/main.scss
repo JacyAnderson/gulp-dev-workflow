@@ -1,0 +1,35 @@
+// main.scss
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+    
+
+// 2. Vendors
+@import
+    'vendor/include-media';
+
+// 3. Base stuff
+@import
+    'base/base',
+    'base/fonts',
+    'base/typography',
+    'base/helpers',
+    'base/reset';
+
+// 4. Layout-related sections
+@import
+    'layout/header',
+    'layout/footer';
+
+// 5. Components
+// @import
+//     'components/button';
+
+// 6. Page-specific styles
+@import
+    'pages/home'; // You will want to delete the pre-existing styles in this folder before starting a new project
+
+// 7. Themes
+@import
+    'themes/default';

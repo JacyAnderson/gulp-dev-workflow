@@ -6,6 +6,9 @@ import uglify from 'gulp-uglify';
 import livereload from 'gulp-livereload';
 import concat from 'gulp-concat';
 import minifyCss from 'gulp-minify-css';
+import postcss from 'gulp-postcss';
+import scss from 'postcss-scss';
+import stripInlineComments from 'postcss-strip-inline-comments';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
@@ -31,7 +34,9 @@ const siteName = 'archive';
 
 // Styles For SCSS
 gulp.task('styles', () => {
-    return gulp.src([`${SRC_PATH}/scss/styles.scss`])
+    let processors = [stripInlineComments];
+    return gulp.src([`${SRC_PATH}/scss/main.scss`])
+        .pipe(postcss(processors, {syntax: scss}))
         .pipe(plumber(function (err) {
             console.log('Style Task Error');
             console.log(err);

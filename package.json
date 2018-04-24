@@ -21,15 +21,18 @@
     "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.4",
     "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-zip": "^4.1.0",
     "imagemin-jpeg-recompress": "^5.1.0",
-    "imagemin-pngquant": "^5.1.0"
+    "imagemin-pngquant": "^5.1.0",
+    "postcss-strip-inline-comments": "^0.1.5"
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "postcss-scss": "^1.0.5",
     "static-server": "^2.2.1"
   }
 }
